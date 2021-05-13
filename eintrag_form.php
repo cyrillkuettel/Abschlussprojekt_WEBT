@@ -1,6 +1,6 @@
 <?php
 //define variables and set them to empty values
-//checks if all the entries are valid
+//now check if all the entries are valid
 
 $name_error = $email_error = $phone_error = $url_error = "";
 $name = $email = $phone = $message = $url = $success = "";

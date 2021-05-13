@@ -4,7 +4,7 @@ class GuestbookAccess
     private $db;
     
     /**
-     * Opens the database.
+     * Open the database using default login and password.
      */
     public function __construct()
     {
@@ -71,6 +71,7 @@ class GuestbookAccess
      */
     function addEntry($name, $eMail, $comment)
     {   
+        
         function debugthis($data) {
             $output = $data;
             if (is_array($output))
