@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Home</title>
 </head>
@@ -23,6 +26,13 @@
         Auch noch etwas Raum.
     </p>
     <h1 id="Canvas"> Canvas</h1>
+
+
+
+
+
+
+
     <section>
         <canvas id="myCanvas" width="1000px" height="500px"></canvas>
         <script>
@@ -52,7 +62,7 @@
                 // c.fill();
             }
 
-            function drawEllipse(x, y, radius, color, optionalLineWidth = '9') {
+            function drawEllipse(x, y, radius, color, optionalLineWidth = '18', strokeStyle = "#454545") {
 
                 //if (typeof optionalLineWidth === 'undefined') { optionalLineWidth = '9'; }
                 c.beginPath();
@@ -69,36 +79,64 @@
 
             function drawBikeFrame() {
                 c.beginPath();
-                
-
-                c.lineWidth = 20;
+                c.lineWidth = 17;
                 c.moveTo(200, 380);
                 c.lineTo(330, 380);
                 c.moveTo(200, 380);
-                c.lineTo(400, 170);
-
+                c.lineTo(310, 210); // diagonal line up 
+                c.lineTo(505, 200); // querLinie 
+                c.moveTo(368, 370);
+                c.lineTo(290, 180); // Stange wo der Sattel drauf ist
+                c.moveTo(390, 360);
+                c.lineTo(502, 215); // von Tretlager zu Lenker
+                c.moveTo(570, 380);
+                c.lineTo(500, 230);
+                c.moveTo(500, 230);
+                c.lineTo(498, 175);
+               
                 c.strokeStyle = '#44a6c6';
                 c.stroke();
-
-
-
-
                 c.closePath();
 
-                
             }
+
+
 
             drawCanvas();
             drawEllipse(200, 380, 100, "black");
             drawEllipse(200, 380, 100, "white");
             drawEllipse(200, 380, 100, "white");
             drawEllipse(200, 380, 20, "#44a6c6", "1");
+            drawEllipse(575, 380, 100, "black");
+            drawEllipse(575, 380, 100, "white");
+            drawEllipse(575, 380, 100, "white");
+            drawEllipse(575, 380, 20, "#44a6c6", "1");
             drawBikeFrame();
+
+            drawEllipse(368, 385, 30, "white", '18', "black"); // Tretlager
         </script>
 
     </section>
 
     <h1 id="Gästebuch"> Gästebuch</h1>
+
+    <p id='output'></p>
+    <script>
+        var output = document.getElementById('output');
+
+        document.onmousemove = getCursorPos;
+
+        output.style.left = 1000 + 'px';
+        output.style.top = 1800 + 'px';
+
+
+
+        function getCursorPos(a) {
+            var posx = a.clientX;
+            var posy = a.clientY - 300;
+            output.innerHTML = "Position X: " + posx + "px & Position Y: " + posy + "px";
+        }
+    </script>
     <h2 class="text-white mt-0">Hier kannst du einen Gästebucheintrag hinterlassen.</h2>
     <?php include('eintrag_erstellen.php'); ?>
     <!--- then we show all the entries immediately after --->
