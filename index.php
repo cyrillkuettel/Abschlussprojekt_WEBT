@@ -86,7 +86,7 @@
                 c.lineTo(310, 210); // diagonal line up 
                 c.lineTo(505, 200); // querLinie 
                 c.moveTo(368, 370);
-                c.lineTo(290, 180); // Stange wo der Sattel drauf ist
+                c.lineTo(300, 190); // Stange wo der Sattel drauf ist
                 c.moveTo(390, 360);
                 c.lineTo(502, 215); // von Tretlager zu Lenker
                 c.moveTo(570, 380);
@@ -100,7 +100,25 @@
 
             }
 
+            function drawTretlager() {
+                c.lineCap = "round";
+                drawEllipse(368, 385, 30, "white", '18', "black"); // Kranz vorne
+                //drawEllipse(368, 389, 5, "#454545", '18',); // Tretlager 
 
+                c.beginPath();
+                c.lineWidth = 17;
+                c.moveTo(365, 388);
+                c.lineTo(330, 454);
+                c.moveTo(322, 455);
+                c.lineTo(343, 455);
+                c.moveTo(380, 347);
+                c.lineTo(390, 325);
+                c.moveTo(380, 325);
+                c.lineTo(395, 325);
+                c.strokeStyle = "#454545";
+                c.stroke();
+                c.closePath();
+            }
 
             drawCanvas();
             drawEllipse(200, 380, 100, "black");
@@ -112,8 +130,23 @@
             drawEllipse(575, 380, 100, "white");
             drawEllipse(575, 380, 20, "#44a6c6", "1");
             drawBikeFrame();
+            drawTretlager();
 
-            drawEllipse(368, 385, 30, "white", '18', "black"); // Tretlager
+            c.beginPath();
+            c.lineCap = "butt";
+            c.lineWidth = 17;
+
+            c.moveTo(300, 190);
+            c.lineTo(282, 142);
+            c.lineCap = "round";
+            c.moveTo(253, 140); // "Primitiver Sattel"
+            c.lineTo(330, 140);
+            c.strokeStyle = "#454545";
+            c.stroke(); 
+            c.closePath();
+
+
+     
         </script>
 
     </section>
