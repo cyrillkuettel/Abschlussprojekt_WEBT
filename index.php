@@ -17,23 +17,37 @@
     <?php include('navbar.php'); ?>
 
     <!-- - Hier drin: Information zu Webapplikation und wie der Benutzer die Applikation zu bedienen hat. -->
-    <h1 id="Information">Information</h1>
-    <p style="margin-bottom:800px">
-        Auch noch etwas Raum.
-    </p>
-    <h1 id="Formular"> Formular</h1>
-    <p style="margin-bottom:800px">
-        Auch noch etwas Raum.
-    </p>
-    <h1 id="Canvas"> Canvas</h1>
+    <div class="w3-container">
+        <h1 id="Information">Information</h1>
+        <p style="margin-bottom:800px">
+            Auch noch etwas Raum.
+        </p>
+    </div>
 
+<!-- Section starting here -->
+    <section class="w3-container">
+        <h1 id="Formular"> Formular</h1>
+        <div class="w3-display-container">
 
+            <img src="img_lights.jpg" alt="Lights">
+            <div class="w3-display-topleft w3-container">Top Left
 
-
-
-
-
-    <section>
+            </div>
+            <div class="w3-display-topright w3-container">Top Right</div>
+            <div class="w3-display-bottomleft w3-container">Bottom Left</div>
+            <div class="w3-display-bottomright w3-container">Bottom Right</div>
+            <div class="w3-display-left w3-container">Left</div>
+            <div class="w3-display-right w3-container">Right</div>
+            <div class="w3-display-middle w3-large">Middle</div>
+            <div class="w3-display-topmiddle w3-container">Top Middle</div>
+            <div class="w3-display-bottommiddle w3-container">Bottom Middle</div>
+        </div>
+        <p style="margin-bottom:800px">
+            Auch noch etwas Raum.
+        </p>
+    </div>
+    <section class="w3-container">
+        <h1 id="Canvas"> Canvas</h1>
         <canvas id="myCanvas" width="1000px" height="500px"></canvas>
         <script>
             // TODO: 
@@ -67,11 +81,8 @@
                 //if (typeof optionalLineWidth === 'undefined') { optionalLineWidth = '9'; }
                 c.beginPath();
                 c.fillStyle = color;
-
                 c.strokeStyle = "#454545";
                 c.lineWidth = optionalLineWidth;
-                // Kreisbogen mit Mittelpunkt (150/120) und dem
-                // Radius 100 Pixel, Winkel von 0 Grad bis 360 Grad
                 c.arc(x, y, radius, 0, 2 * Math.PI, true);
                 c.fill();
                 c.stroke();
@@ -93,18 +104,15 @@
                 c.lineTo(500, 230);
                 c.moveTo(500, 230);
                 c.lineTo(498, 175);
-               
                 c.strokeStyle = '#44a6c6';
                 c.stroke();
                 c.closePath();
-
             }
 
             function drawTretlager() {
                 c.lineCap = "round";
                 drawEllipse(368, 385, 30, "white", '18', "black"); // Kranz vorne
                 //drawEllipse(368, 389, 5, "#454545", '18',); // Tretlager 
-
                 c.beginPath();
                 c.lineWidth = 17;
                 c.moveTo(365, 388);
@@ -115,6 +123,28 @@
                 c.lineTo(390, 325);
                 c.moveTo(380, 325);
                 c.lineTo(395, 325);
+                c.strokeStyle = "#454545";
+                c.stroke();
+                c.closePath();
+            }
+
+            function drawSattel() {
+                c.beginPath();
+                c.lineCap = "butt";
+                c.lineWidth = 17;
+                c.moveTo(300, 190);
+                c.lineTo(282, 142);
+                c.lineCap = "round";
+                c.moveTo(253, 140); // "Primitiver Sattel"
+                c.lineTo(330, 140);
+                c.lineCap = "square";
+                c.moveTo(498, 175);
+                c.lineTo(498, 170);
+                c.lineCap = "round";
+                c.moveTo(498, 175);
+                c.lineTo(498, 155);
+                c.moveTo(485, 155);
+                c.quadraticCurveTo(500, 160, 560, 140) // Lenker
                 c.strokeStyle = "#454545";
                 c.stroke();
                 c.closePath();
@@ -131,38 +161,22 @@
             drawEllipse(575, 380, 20, "#44a6c6", "1");
             drawBikeFrame();
             drawTretlager();
-
-            c.beginPath();
-            c.lineCap = "butt";
-            c.lineWidth = 17;
-
-            c.moveTo(300, 190);
-            c.lineTo(282, 142);
-            c.lineCap = "round";
-            c.moveTo(253, 140); // "Primitiver Sattel"
-            c.lineTo(330, 140);
-            c.strokeStyle = "#454545";
-            c.stroke(); 
-            c.closePath();
-
-
-     
+            drawSattel();
         </script>
 
     </section>
+    <section class="w3-container">
+        <h1 id="Gästebuch" class=""> Gästebuch</h1>
+    </section>
 
-    <h1 id="Gästebuch"> Gästebuch</h1>
 
+    <!-- delete this later, just for convenience --->
     <p id='output'></p>
     <script>
         var output = document.getElementById('output');
-
         document.onmousemove = getCursorPos;
-
         output.style.left = 1000 + 'px';
         output.style.top = 1800 + 'px';
-
-
 
         function getCursorPos(a) {
             var posx = a.clientX;
@@ -173,6 +187,9 @@
     <h2 class="text-white mt-0">Hier kannst du einen Gästebucheintrag hinterlassen.</h2>
     <?php include('eintrag_erstellen.php'); ?>
     <!--- then we show all the entries immediately after --->
+    <footer class="w3-container">
+        <p> This is the footer</p>
+    </footer>
 </body>
 
 </html>
