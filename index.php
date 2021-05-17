@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/custom_rules.css">
     <title>Home</title>
 
 </head>
@@ -19,7 +19,6 @@
         <h1> Die besten Velos überhaupt</h1>
     </header>
     <?php include('navbar.php'); ?>
-
     <!-- - Hier drin: Information zur Webapplikation und wie der Benutzer die Applikation zu bedienen hat. -->
     <div class="w3-container">
         <h1 id="Information">Information</h1>
@@ -38,13 +37,14 @@
                 <section class="w3-card w3-margin">
                     <img class="w3-image" src="img/image-1.jpeg" alt="">
                     <div class="w3-container">
-
-                        <h2 style="text-align:right;float:right;">Scott Metrix 20</h2>
-                            <h2 style="text-align:left;float:left;">ID#1</h2>
-                            <hr style="clear:both;"/>
-                            <p>Dein perfekter sportlicher Begleiter im Alltag – Metrix 20 von Scott.
-                                Der Aluminiumrahmen in Kombination mit der Metrix 20 Carbongabel sorgen für ein niedriges Gesamtgewicht des Rads.
-                                Ein integrierter Kabelverlauf und ein somit aufgeräumtes Aussehen gehört bei Scott zum Standard.</p>
+                        <div class="product_description">
+                            <h2>Scott Metrix 20</h2>
+                            <p>ID #1</p>
+                        </div>
+                        <hr style="clear:both;" />
+                        <p>Dein perfekter sportlicher Begleiter im Alltag – Metrix 20 von Scott.
+                            Der Aluminiumrahmen in Kombination mit der Metrix 20 Carbongabel sorgen für ein niedriges Gesamtgewicht des Rads.
+                            Ein integrierter Kabelverlauf und ein somit aufgeräumtes Aussehen gehört bei Scott zum Standard.</p>
 
                     </div>
                 </section>
@@ -54,17 +54,15 @@
                 <section class="w3-card w3-margin">
                     <img class="w3-image" src="img/image-2.jpeg" alt="">
                     <div class="w3-container">
-                        <div class="item_description">
+                        <div class="product_description">
                             <h2>Scott Genius 900 </h2>
-                            <h2>ID#2</h2>
-
-                            <p>Mit dem neuen Scott Genius 900 Tuned All Mountainbike war dieser Satz noch nie glaubhafter:
-                                Any trail, any time. Dem Genius wurde für 2018 ein ganz neues Gesicht verpasst, die Tuned-Version
-                                ist das Top-of-the-Line-Modell</p>
-                            <hr>
-                            <hr />
-
+                            <p>ID#2</h2>
                         </div>
+                        <p>Mit dem neuen Scott Genius 900 Tuned All Mountainbike war dieser Satz noch nie glaubhafter:
+                            Any trail, any time. Dem Genius wurde für 2018 ein ganz neues Gesicht verpasst, die Tuned-Version
+                            ist das Top-of-the-Line-Modell</p>
+                        <hr>
+                        <hr />
                     </div>
                 </section>
             </div>
@@ -75,9 +73,13 @@
                 <section class="w3-card w3-margin">
                     <img class="w3-image" src="img/image-3.jpeg" alt="">
                     <div class="w3-container">
-                        <h2>Scott Genius 40</h2>
+                        <div class="product_description">
+                            <h2>Scott Genius 40</h2>
+                            <p>ID #3</p>
+                        </div>
                         <p>Das Genius ist durch sein verstellbares Fahrwerk vielseitig einsetzbar –
                             der Sportler unter den Long-Travel-All-Mountains.</p>
+
                     </div>
                 </section>
             </div>
@@ -85,7 +87,10 @@
                 <section class="w3-card w3-margin">
                     <img class="w3-image" src="img/image-4.jpeg" alt="">
                     <div class="w3-container">
-                        <h2>Rennvelo Scott Foil 10</h2>
+                        <div class="product_description">
+                            <h2>Rennvelo Scott Foil 10</h2>
+                            <p>ID #3</p>
+                        </div>
                         <p>Ein Rennvelo der Superlative! Crazy light and crazy fast! </p>
                     </div>
                 </section>
