@@ -25,27 +25,36 @@
 
     <div class="w3-container">
         <h1 id="Information">Information</h1>
-        <p>Falls Sie ein Velo kaufen wollen, können Sie unterhalb der Bilder die korrespondierende ID angeben.
-            Danach das Formular ausfüllen, abschicken. </p>
+        <h2>Falls Sie ein Velo kaufen wollen, können Sie unterhalb der Bilder die korrespondierende ID angeben.
+            Danach das Formular ausfüllen, abschicken. </h2>
         <div class="w3-container">
             <img class="w3-image" src="img/downhill.jpg" alt="">
         </div>
 
     </div>
-   <!--- <link rel=stylesheet href="/css/styles.css"> -->
+    <!--- <link rel=stylesheet href="/css/styles.css"> -->
+    <?php
 
+    $name_error = $email_error = $phone_error = $url_error = "";
+    $name = $email = $id = $message = $url = $success = "";
+    ?>
+    <div class="w3-container">
     <div class="formular">
         <form id="order" action="/action.php" method="post">
             <fieldset>
-                <input placeholder="Your name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus>
+                <input placeholder="Name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus>
                 <span class="error"><?= $name_error ?></span>
             </fieldset>
             <fieldset>
-                <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="2">
+                <input placeholder="id" type="text" name="ID" value="<?= $id ?>" tabindex="2" autofocus>
+                <span class="error"><?= $name_error ?></span>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="3">
                 <span class="error"><?= $email_error ?></span>
             </fieldset>
             <fieldset>
-                <textarea placeholder="Gästebuch Eintrag" tabindex="5" name="message" value="<?= $message ?>"></textarea>
+                <textarea placeholder="Adresse" tabindex="5" name="message" value="<?= $message ?>" tabindex="4"></textarea>
             </fieldset>
             <fieldset>
                 <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
@@ -53,6 +62,8 @@
         </form>
         <p name="success" value=" <?= $success ?> "> </p>
     </div>
+    </div>
+
 
 
     <!-- Darstellung der Produkten  -->
