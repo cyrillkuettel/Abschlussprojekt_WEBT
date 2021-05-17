@@ -3,7 +3,6 @@
 <link rel=stylesheet  href="/css/styles.css">
 <div class="my_guestbook">  
 	<form id="contact" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-	  <h2>Schreibe etwas  ins Gästebuch</h2>
 	  <fieldset>
 		<input placeholder="Your name" type="text" name="name" value= "<?= $name ?>" tabindex="1" autofocus>
 		<span class="error"><?= $name_error ?></span>

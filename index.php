@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
@@ -15,19 +16,46 @@
 </head>
 
 <body>
-    <header class="w3-container w3-margin-left w3-margin-right w3-green">
-        <h1> Die besten Velos überhaupt</h1>
+    <header>
+        <h1>Bruno's Velo Shop</h1>
     </header>
     <?php include('navbar.php'); ?>
     <!-- - Hier drin: Information zur Webapplikation und wie der Benutzer die Applikation zu bedienen hat. -->
+
+
     <div class="w3-container">
         <h1 id="Information">Information</h1>
-        <p style="margin-bottom:800px">
-            Auch noch etwas Raum.
-        </p>
+        <p>Falls Sie ein Velo kaufen wollen, können Sie unterhalb der Bilder die korrespondierende ID angeben.
+            Danach das Formular ausfüllen, abschicken. </p>
+        <div class="w3-container">
+            <img class="w3-image" src="img/downhill.jpg" alt="">
+        </div>
+
+    </div>
+   <!--- <link rel=stylesheet href="/css/styles.css"> -->
+
+    <div class="formular">
+        <form id="order" action="/action.php" method="post">
+            <fieldset>
+                <input placeholder="Your name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus>
+                <span class="error"><?= $name_error ?></span>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="2">
+                <span class="error"><?= $email_error ?></span>
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="Gästebuch Eintrag" tabindex="5" name="message" value="<?= $message ?>"></textarea>
+            </fieldset>
+            <fieldset>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
+            </fieldset>
+        </form>
+        <p name="success" value=" <?= $success ?> "> </p>
     </div>
 
-    <!-- Formular mit darstellung der Produkten  -->
+
+    <!-- Darstellung der Produkten  -->
 
     <h1 id="Formular"> Formular</h1>
     <main class="w3-container">
@@ -89,7 +117,7 @@
                     <div class="w3-container">
                         <div class="product_description">
                             <h2>Rennvelo Scott Foil 10</h2>
-                            <p>ID #3</p>
+                            <p>ID #4</p>
                         </div>
                         <p>Ein Rennvelo der Superlative! Crazy light and crazy fast! </p>
                     </div>
