@@ -1,0 +1,13 @@
+.right_description {
+    text-align:right;
+    float:right;
+     display:inline; 
+
+}
+
+.left_description {
+    text-align:left;
+    float:left;
+    display:inline; 
+
+}
