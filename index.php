@@ -39,29 +39,29 @@
     $name = $email = $id = $message = $url = $success = "";
     ?>
     <div class="w3-container">
-    <div class="formular">
-        <form id="order" action="/action.php" method="post">
-            <fieldset>
-                <input placeholder="Name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus>
-                <span class="error"><?= $name_error ?></span>
-            </fieldset>
-            <fieldset>
-                <input placeholder="id" type="text" name="ID" value="<?= $id ?>" tabindex="2" autofocus>
-                <span class="error"><?= $name_error ?></span>
-            </fieldset>
-            <fieldset>
-                <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="3">
-                <span class="error"><?= $email_error ?></span>
-            </fieldset>
-            <fieldset>
-                <textarea placeholder="Adresse" tabindex="5" name="message" value="<?= $message ?>" tabindex="4"></textarea>
-            </fieldset>
-            <fieldset>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
-            </fieldset>
-        </form>
-        <p name="success" value=" <?= $success ?> "> </p>
-    </div>
+        <div class="formular">
+            <form id="order" action="/action.php" method="post">
+                <fieldset>
+                    <input placeholder="Name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus>
+                    <span class="error"><?= $name_error ?></span>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="id" type="text" name="ID" value="<?= $id ?>" tabindex="2" autofocus>
+                    <span class="error"><?= $name_error ?></span>
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="3">
+                    <span class="error"><?= $email_error ?></span>
+                </fieldset>
+                <fieldset>
+                    <textarea placeholder="Adresse" tabindex="5" name="message" value="<?= $message ?>" tabindex="4"></textarea>
+                </fieldset>
+                <fieldset>
+                    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
+                </fieldset>
+            </form>
+            <p name="success" value=" <?= $success ?> "> </p>
+        </div>
     </div>
 
 
@@ -95,13 +95,11 @@
                     <div class="w3-container">
                         <div class="product_description">
                             <h2>Scott Genius 900 </h2>
-                            <p>ID#2</h2>
+                            <p>ID#2</p>
                         </div>
                         <p>Mit dem neuen Scott Genius 900 Tuned All Mountainbike war dieser Satz noch nie glaubhafter:
                             Any trail, any time. Dem Genius wurde für 2018 ein ganz neues Gesicht verpasst, die Tuned-Version
                             ist das Top-of-the-Line-Modell</p>
-                        <hr>
-                        <hr />
                     </div>
                 </section>
             </div>
@@ -268,8 +266,44 @@
         <?php include('eintrag_erstellen.php'); ?>
         <!--- then we show all the entries immediately after --->
     </div>
-    <footer class="w3-container w3-center">
-        <p> This is the footer</p>
+    <div class="w3-container">
+
+        <?php
+        $guestbook = new GuestbookAccess();
+        $table = $guestbook->getEntries();  // now $table is a two dimensionaly array, containing entries of the book
+
+
+        if ($table) { // Check if there are enrtries
+            echo '<table id="guestbook">';
+            echo "<tr><th>Index</th><th>Name</th><th>Date</th><th>Comment</th></tr>";
+
+            foreach ($table as $row) {
+
+                $index = $row["Index"];
+                $name = $row["Name"];
+                $date = $row["Date"];
+                $email = $row["eMail"];
+                $comment = $row["Comment"];
+
+                echo "<tr><td  id=\"indexColumn\" >";
+                echo $index;
+                echo "</td><td>";
+                echo "$name";
+                echo "</td><td>";
+                echo "$date";
+                echo "</td><td>";
+                echo "$comment\n";
+                echo "</td>";
+            }
+            echo "</table>";
+        } else {
+            echo "\nGuest book is empty\n";
+        }
+        ?>
+    </div>
+    <footer class="footer">
+        <p>  <p>Author: Cyrill Küttel</p><br>
+  <p><a href="mailto:cyrill.kuettel@stud.hslu.ch">cyrill.kuettel@stud.hslu.ch</a></p></p>
     </footer>
 </body>
 

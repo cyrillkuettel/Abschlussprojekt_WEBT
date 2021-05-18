@@ -79,7 +79,7 @@
 header {
   padding: 60px;
   text-align: center;
-  background: #0dc770;
+  background: #4CAF50;
   color: white;
   font-size: 30px;
 }
@@ -88,3 +88,44 @@ header h1 {
   font-weight: bold;
   font-size: 50px;
 }
+
+
+
+#guestbook {
+ /* font-family: Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#guestbook td, #guestbook th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#guestbook tr:nth-child(even){background-color: #f2f2f2;}
+
+#guestbook tr:hover {background-color: #ddd;}
+#guestbook tr:nth-child(0){
+    width: 10;
+}
+
+
+#guestbook th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.footer {
+  padding: 60px; 
+  
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+}
+
