@@ -14,15 +14,12 @@
     grid-template-rows: repeat(8, 5vw); /* height of the rows is equal to 5% of viewport width  */
     grid-gap: 15px;
 }
-.gallery_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.bike_img {
     transition: transform .2s; /*Animation */
 }
-.gallery_img:hover {
+.bike_img:hover {
     /* Here we could try some more advanced stuff */
-    /* transform: scale(1.1); */
+    transform: scale(1.5); 
   }
 
   *,

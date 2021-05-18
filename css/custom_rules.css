@@ -128,4 +128,13 @@ header h1 {
   color: white;
   text-align: center;
 }
+.formular {
+  width: 100%;
+  margin: auto;
 
+}
+
+#order {
+  text-align: center;
+  margin: auto;
+}
