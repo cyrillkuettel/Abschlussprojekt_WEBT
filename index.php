@@ -8,8 +8,9 @@
     <meta name="author" content="" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/custom_rules.css">
     <title>Home</title>
 
@@ -130,7 +131,7 @@
                 <textarea placeholder="Adresse" tabindex="5" name="message" value="<?= $message ?>" tabindex="4"></textarea>
             </fieldset>
             <fieldset>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
+                <button name="btnsubmit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
             </fieldset>
         </form>
         <p name="success" value=" <?= $success ?> "> </p>
