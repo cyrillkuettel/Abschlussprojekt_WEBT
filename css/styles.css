@@ -15,11 +15,11 @@
     grid-gap: 15px;
 }
 .bike_img {
-    transition: transform .2s; /*Animation */
+  transition: transform .2s; /*Animation */
 }
 .bike_img:hover {
     /* Here we could try some more advanced stuff */
-    transform: scale(1.5); 
+    /* transform: scale(1.5); */
   }
 
   *,

@@ -14,7 +14,6 @@
     <title>Home</title>
 
 </head>
-
 <body>
     <header>
         <h1>Bruno's Velo Shop</h1>
@@ -28,14 +27,7 @@
         <div class="w3-container">
             <img class="w3-image" src="img/downhill.jpg" alt="">
         </div>
-
     </div>
-
-
-
-
-
-
 
     <!-- Darstellung der Produkten  -->
 
