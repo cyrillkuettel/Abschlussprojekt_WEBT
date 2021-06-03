@@ -5,13 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- hamburger btn-->
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/custom_rules.css">
+
+    <script src="/js/nav-script.js"></script> 
     <title>Home</title>
 
 </head>
@@ -19,7 +21,17 @@
     <header>
         <h1>Bruno's Velo Shop</h1>
     </header>
-    <?php include('navbar.php'); ?>
+    <nav>
+    <div class="topnav" id="navigation">
+            <a href="#Information">Information</a>
+            <a href="#Formular">Formular</a>
+            <a href="#Canvas">Canvas</a>
+            <a href="#Gästebuch">Gästebuch</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i></a>
+
+    </div>
+</nav>
     <!-- - Hier drin: Information zur Webapplikation und wie der Benutzer die Applikation zu bedienen hat. -->
     <div class="w3-container">
         <h1 id="Information">Information</h1>
@@ -116,7 +128,7 @@
                 <span class="error"><?= $name_error ?></span>
             </fieldset>
             <fieldset>
-                <select id="product">
+                <select id="productDropDown">
                     <option value="scm1">Scott Metrix 20</option>
                     <option value="sg900">Scott Genius 900 </option>
                     <option value="sc40">Scott Genius 40</option>

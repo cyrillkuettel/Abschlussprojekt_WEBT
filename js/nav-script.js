@@ -1,5 +1,5 @@
 
-/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+/* die "responsive" class wird hingetan und wieder weggenommen. (Wenn der user auf die Navbar klickt)*/
 function myFunction() {
     var x = document.getElementById("navigation");
     if (x.className === "topnav") {
