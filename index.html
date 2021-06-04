@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,33 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- hamburger btn-->
+    <!-- hamburger btn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/custom_rules.css">
 
-    <script src="/js/nav-script.js"></script> 
+    <script src="/js/formValidate.js"></script>
+    <script src="/js/nav-script.js"></script>
     <title>Home</title>
 
 </head>
+
 <body>
     <header>
         <h1>Bruno's Velo Shop</h1>
     </header>
     <nav>
-    <div class="topnav" id="navigation">
+        <div class="topnav" id="navigation">
             <a href="#Information">Information</a>
             <a href="#Formular">Formular</a>
             <a href="#Canvas">Canvas</a>
             <a href="#Gästebuch">Gästebuch</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <a href="javascript:void(0);" class="icon" onclick="toggleNavigation()">
                 <i class="fa fa-bars"></i></a>
 
-    </div>
-</nav>
+        </div>
+    </nav>
     <!-- - Hier drin: Information zur Webapplikation und wie der Benutzer die Applikation zu bedienen hat. -->
     <div class="w3-container">
         <h1 id="Information">Information</h1>
-        <h2>Falls Sie ein Velo kaufen wollen, können Sie unterhalb der Bilder die korrespondierende ID angeben.
+        <h2>Falls Sie ein Velo kaufen wollen, finden Sie das Bestellformular direkt unter den Produkten.
             Danach das Formular ausfüllen, abschicken. </h2>
         <div class="w3-container">
             <img class="w3-image" src="img/downhill.jpg" alt="">
@@ -51,17 +53,19 @@
             <div class="w3-col m6">
                 <section class="w3-card w3-margin">
                     <img class="w3-image bike_img" src="img/image-1.jpeg" alt="">
-                        <div class="w3-container">
-                            <div class="product_description">
-                                <h2>Scott Metrix 20</h2>
-                                <p>ID #1</p>
-                            </div>
-                            <hr style="clear:both;" />
-                            <p>Dein perfekter sportlicher Begleiter im Alltag – Metrix 20 von Scott.
-                                Der Aluminiumrahmen in Kombination mit der Metrix 20 Carbongabel sorgen für ein niedriges Gesamtgewicht des Rads.
-                                Ein integrierter Kabelverlauf und ein somit aufgeräumtes Aussehen gehört bei Scott zum Standard.</p>
-
+                    <div class="w3-container">
+                        <div class="product_description">
+                            <h2>Scott Metrix 20</h2>
+                            <p>ID #1</p>
                         </div>
+                        <hr style="clear:both;" />
+                        <p>Dein perfekter sportlicher Begleiter im Alltag – Metrix 20 von Scott.
+                            Der Aluminiumrahmen in Kombination mit der Metrix 20 Carbongabel sorgen für ein niedriges
+                            Gesamtgewicht des Rads.
+                            Ein integrierter Kabelverlauf und ein somit aufgeräumtes Aussehen gehört bei Scott zum
+                            Standard.</p>
+
+                    </div>
 
 
                 </section>
@@ -77,7 +81,8 @@
                         </div>
                         <hr style="clear:both;" />
                         <p>Mit dem neuen Scott Genius 900 Tuned All Mountainbike war dieser Satz noch nie glaubhafter:
-                            Any trail, any time. Dem Genius wurde für 2018 ein ganz neues Gesicht verpasst, die Tuned-Version
+                            Any trail, any time. Dem Genius wurde für 2018 ein ganz neues Gesicht verpasst, die
+                            Tuned-Version
                             ist das Top-of-the-Line-Modell</p>
                     </div>
                 </section>
@@ -115,20 +120,18 @@
         </div>
     </main>
 
-    <?php
-
-    $name_error = $email_error = $phone_error = $url_error = "";
-    $name = $email = $id = $message = $url = $success = "";
-    ?>
+    <!-- Bestellformular   -->
 
     <div class="formular">
-        <form id="order" action="/action.php" method="post">
+        <form id="order" action="/eintrag_form.php" method="post" onsubmit="return validate();">
             <fieldset>
-                <input placeholder="Name" type="text" name="name" value="<?= $name ?>" tabindex="1" autofocus required>
-                <span class="error"><?= $name_error ?></span>
+                <!-- regex: only letters and whitespace -->
+                <input id="name" placeholder="Name" type="text" name="name" tabindex="1" pattern="^[a-zA-Z ]*$"
+                    autofocus required="'requried'">
             </fieldset>
             <fieldset>
-                <select id="productDropDown">
+                <select id="productDropDown" name="option">
+                    <option value="" disabled selected>Wähle </option>
                     <option value="scm1">Scott Metrix 20</option>
                     <option value="sg900">Scott Genius 900 </option>
                     <option value="sc40">Scott Genius 40</option>
@@ -136,17 +139,12 @@
                 </select>
             </fieldset>
             <fieldset>
-                <input placeholder="Email" type="text" name="email" value="<?= $email ?>" tabindex="3">
-                <span class="error"><?= $email_error ?></span>
-            </fieldset>
-            <fieldset>
-                <textarea placeholder="Adresse" tabindex="5" name="message" value="<?= $message ?>" tabindex="4"></textarea>
+                <input id="email" placeholder="Email" type="email" name="email" tabindex="3">
             </fieldset>
             <fieldset>
                 <button name="btnsubmit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
             </fieldset>
         </form>
-        <p name="success" value=" <?= $success ?> "> </p>
     </div>
 
 
@@ -268,17 +266,21 @@
             drawTretlager();
             drawSattel();
         </script>
-
     </section>
+
     <!-- Gästebuch: Serverseitige Persistenz --->
     <div class="w3-container">
         <h1 id="Gästebuch"> Gästebuch</h1>
-        <h2 class="text-white mt-0">Hier kannst du einen Gästebucheintrag hinterlassen.</h2>
-        <?php include('eintrag_erstellen.php'); ?>
-        <!--- then we show all the entries immediately after --->
+        <p class="text-white mt-0">Hier können Sie einen Gästebucheintrag hinterlassen. Hast du Anregungen / Wünsche?
+             Falls ja, würden wir gerne davon hören.  </p>
+
+        <!--- here we have included the eintrag_erstellen.php--->
     </div>
-    <footer class="w3-container w3-center">
-        <p> This is the footer</p>
+    <footer class="w3-container">
+        <div class="w3-container w3-center">
+            <p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>
+        </div>
+
     </footer>
 </body>
 
