@@ -20,9 +20,9 @@
 
 </head>
 
-<body>
+<body onload="document.documentElement.scrollTop;">
     <header>
-        <h1><a href="index.html" onclick="window.scrollTo(0, 0);">Bruno's Velo Shop</a></h1>
+        <h1><a href="index.html">Bruno's Velo Shop</a></h1>
 
     </header>
     <nav>
@@ -125,7 +125,7 @@
     <!-- Bestellformular   -->
 
     <div class="formular">
-        <form id="order" action="/eintrag_form.php" method="post" onsubmit="return validate();">
+        <form name="kauf" id="order" action="/eintrag_form.php" method="post" onsubmit="return validate();">
 
             <!-- regex: only letters and whitespace -->
             <input id="name" placeholder="Name" type="text" name="name" tabindex="1"
@@ -145,9 +145,8 @@
 
 
             <button name="btnsubmit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
+            <input name="action" type="hidden">
 
-
-            <input type="hidden" name="action" value="buy">
 
         </form>
     </div>
@@ -160,28 +159,6 @@
         <script src="/js/canvas.js" ></script>
     </section>
 
-    <!-- Gästebuch: Serverseitige Persistenz --->
-    <div class="w3-container">
-        <h1 id="Gästebuch"> Gästebuch</h1>
-        <p class="text-white mt-0">Hier können Sie einen Gästebucheintrag hinterlassen. Haben Sie Anregungen / Wünsche?
-            Falls ja, würden wir gerne davon hören. </p>
-
-
-        <!--- here we have included the eintrag_erstellen.php--->
-
-        <div class="my_guestbook">
-            <form id="contact" action="eintrag_form.php" method="post">
-                <input placeholder="Your name" type="text" name="name" tabindex="1" autofocus required>
-                <input placeholder="Your Email Address" type="email" name="email" tabindex="2" required>
-                <textarea placeholder="Gästebuch Eintrag" tabindex="5" name="message" required></textarea>
-                <button name=" submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                <input type="hidden" name="action" value="entry"> <!-- to differentiate the forms. -->
-            </form>
-        </div>
-
-        </html>
-
-    </div>
     <footer class="w3-container">
         <div class="w3-container w3-center">
             <p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>
