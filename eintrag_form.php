@@ -24,10 +24,10 @@
     </header>
     <nav>
         <div class="topnav" id="navigation">
-            <a href="#Information">Information</a>
-            <a href="#Formular">Formular</a>
-            <a href="#Canvas">Canvas</a>
-            <a href="#Gästebuch">Gästebuch</a>
+            <a href="index.html/#Information">Information</a>
+            <a href="index.html/#Formular">Formular</a>
+            <a href="index.html/#Canvas">Canvas</a>
+            <a href="index.html/#Gästebuch">Gästebuch</a>
             <a href="javascript:void(0);" class="icon" onclick="toggleNavigation()">
                 <i class="fa fa-bars"></i></a>
 
@@ -44,50 +44,56 @@
 $name_error = $email_error = $phone_error = $url_error = "";
 $name = $email = $phone = $message = $url = $success = "";
 
+
+
 require_once 'GuestbookAccess.php';
 
 switch ($_POST['action']) {
     case "buy":
+        // TODO:  use isset to check null as well. 
         if (empty($_POST['name'])) {
-            echo '<script> alert("Geben Sie gültige Eingaben in das Formular!");  </script>';
+            warn_and_go_back("Geben Sie gültige Eingaben in das Formular!");
+            return;
         } else {
-            $name = test_input($_POST["name"]);
+            $name = $_POST["name"];
             if (!preg_match("/^[a-zA-Z\s]*$/i", $name)) {
-                $name_error = "Only letters and white space allowed";
+                warn_and_go_back("Nur Buchstaben und Leerschläge im Namen!");
             }
         }
 
         if (empty($_POST["email"])) {
-            $email_error = "Email is required";
+            // echo '<script> alert("Geben Sie eine Email an 1"); window.location = "index.html"; </script>';
+            warn_and_go_back("Bitte geben Sie eine Email an");
+            return;
         } else {
-            $email = test_input($_POST["email"]);
+            $email = $_POST["email"];
             //check if e-mail address is well-formed
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $email_error = "invalid email format";
+                warn_and_go_back("Diese Email ist ungültig");
+                return;
             }
         }
+        if (!empty($_POST['option'])) {
+            if ($_POST['option'] == "scm1") { // ausverkauft
 
-        if (empty($_POST["message"])) {
-            $message = "";
+            } else {
+
+                
+            }
         } else {
-            $message = $_POST["message"];
+            warn_and_go_back("Kein bike ausgewählt?");
         }
 
-        if (empty($_POST["message"])) {
-            $message = "";
-        } else {
-            $message = test_input($_POST["message"]);
-        }
 
         break;
-        
-        // Hier wird der Gästebucheintrag gehandelt
+
+        //  ------------------------------------------  Hier wird der Gästebucheintrag gehandelt
     case "entry":
 
         if (empty($_POST['name'])) {
             echo '<script> alert("Geben Sie gültige Eingaben in das Formular!");  </script>';
         } else {
-            $name = test_input($_POST["name"]);
+            $name = $_POST["name"];
             if (!preg_match("/^[a-zA-Z\s]*$/i", $name)) {
                 $name_error = "Only letters and white space allowed";
             }
@@ -96,8 +102,8 @@ switch ($_POST['action']) {
         if (empty($_POST["email"])) {
             $email_error = "Email is required";
         } else {
-            $email = test_input($_POST["email"]);
-            //check if e-mail address is well-formed
+            $email = $_POST["email"];
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $email_error = "invalid email format";
             }
@@ -112,7 +118,7 @@ switch ($_POST['action']) {
         if (empty($_POST["message"])) {
             $message = "";
         } else {
-            $message = test_input($_POST["message"]);
+            $message = $_POST["message"];
         }
 
 
@@ -141,17 +147,37 @@ switch ($_POST['action']) {
         }
         break;
 }
+# Cookie erstellen
+if (!(isset($_COOKIE['customerName']))) {
+    if (!empty($name)) {
+        setcookie("customerName", $name, time() + 3600);
+    }
+} else {
 
-
-
-
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+    if (cookieNameChanged($_COOKIE['customerName'], $name)) {
+        setcookie("customerName", $name, time() + 3600);
+    } else {
+        // OK. name stayed the same. 
+    }
 }
+
+
+
+/*
+ function to warn the user and return to the main Page. 
+ main page has to have the name index.html for this to work.
+*/
+function warn_and_go_back($data)
+{
+    echo "<script>alert('" . $data . "' ); window.location = 'index.html'; </script>";
+}
+
+function cookieNameChanged($cookie, $name)
+{
+    return $cookie == $name;
+}
+
+
 function debug($data)
 { // Triviales, aber praktisches console.log in php 
     $output = $data;
@@ -160,3 +186,15 @@ function debug($data)
 
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
+
+
+?>
+<div class="w3-card-4 w3-center" style="margin:auto;">
+
+    <div class="link-container">
+        <a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück</button></a>
+    </div>
+    <div class="thank you">
+
+    </div>
+</div>
