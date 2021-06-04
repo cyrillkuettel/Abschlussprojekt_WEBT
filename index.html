@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -124,26 +125,29 @@
 
     <div class="formular">
         <form id="order" action="/eintrag_form.php" method="post" onsubmit="return validate();">
-            <fieldset>
-                <!-- regex: only letters and whitespace -->
-                <input id="name" placeholder="Name" type="text" name="name" tabindex="1" pattern="^[a-zA-Z ]*$"
-                    autofocus required="'requried'">
-            </fieldset>
-            <fieldset>
-                <select id="productDropDown" name="option">
-                    <option value="" disabled selected>Wähle </option>
-                    <option value="scm1">Scott Metrix 20</option>
-                    <option value="sg900">Scott Genius 900 </option>
-                    <option value="sc40">Scott Genius 40</option>
-                    <option value="rcf10">Rennvelo Scott Foil 10</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input id="email" placeholder="Email" type="email" name="email" tabindex="3">
-            </fieldset>
-            <fieldset>
-                <button name="btnsubmit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
-            </fieldset>
+
+            <!-- regex: only letters and whitespace -->
+            <input id="name" placeholder="Name" type="text" name="name" tabindex="1" pattern="^[a-zA-Z ]*$" autofocus
+                required="'requried'">
+
+
+            <select id="productDropDown" name="option">
+                <option value="" disabled selected>Wähle </option>
+                <option value="scm1">Scott Metrix 20</option>
+                <option value="sg900">Scott Genius 900 </option>
+                <option value="sc40">Scott Genius 40</option>
+                <option value="rcf10">Rennvelo Scott Foil 10</option>
+            </select>
+
+
+            <input id="email" placeholder="Email" type="email" name="email" tabindex="3">
+
+
+            <button name="btnsubmit" type="submit" id="contact-submit" data-submit="...Sending">Abschicken</button>
+
+
+            <input type="hidden" name="action" value="buy">
+
         </form>
     </div>
 
@@ -271,10 +275,24 @@
     <!-- Gästebuch: Serverseitige Persistenz --->
     <div class="w3-container">
         <h1 id="Gästebuch"> Gästebuch</h1>
-        <p class="text-white mt-0">Hier können Sie einen Gästebucheintrag hinterlassen. Hast du Anregungen / Wünsche?
-             Falls ja, würden wir gerne davon hören.  </p>
+        <p class="text-white mt-0">Hier können Sie einen Gästebucheintrag hinterlassen. Haben Sie Anregungen / Wünsche?
+            Falls ja, würden wir gerne davon hören. </p>
+
 
         <!--- here we have included the eintrag_erstellen.php--->
+
+        <div class="my_guestbook">
+            <form id="contact" action="eintrag_form.php" method="post">
+                <input placeholder="Your name" type="text" name="name" tabindex="1" autofocus required>
+                <input placeholder="Your Email Address" type="email" name="email" tabindex="2" required>
+                <textarea placeholder="Gästebuch Eintrag" tabindex="5" name="message" required></textarea>
+                <button name=" submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                <input type="hidden" name="action" value="entry"> <!-- to differentiate the forms. -->
+            </form>
+        </div>
+
+        </html>
+
     </div>
     <footer class="w3-container">
         <div class="w3-container w3-center">
