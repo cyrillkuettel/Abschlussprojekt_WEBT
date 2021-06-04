@@ -2,6 +2,7 @@
 class GuestbookAccess
 {
     private $db;
+    private $table;
     
     /**
      * Open the database using default login and password.
@@ -10,7 +11,8 @@ class GuestbookAccess
     {
         $username = "root";
         $password = "";
-        $database = "mydb";
+        $database = "db1";
+        $this->table = "guestbook";
         
         // Open the database
         $this->db = mysqli_connect("localhost", $username, $password);        
@@ -42,7 +44,8 @@ class GuestbookAccess
     public function getEntries()
     {
         // Make querry
-        $result = mysqli_query($this->db, "SELECT * FROM guestbook");
+        $t = $this->table;
+        $result = mysqli_query($this->db, "SELECT * FROM $t");
         
         $table = false;
         $i = 0;
@@ -87,7 +90,8 @@ class GuestbookAccess
         
 
         // Add entry to the database
-        $result = mysqli_query($this->db, "INSERT INTO guestbook (namep, email, comment) VALUES ('$name', '$eMail', '$comment')");
+        $t = $this->table;
+        $result = mysqli_query($this->db, "INSERT INTO $t (namep, email, comment) VALUES ('$name', '$eMail', '$comment')");
         
         
 
@@ -114,8 +118,9 @@ class GuestbookAccess
         // For security: supress SQL injection
         settype($index, 'Integer');
 
-        // Make querry
-        $result = mysqli_query($this->db, "SELECT * FROM guestbook WHERE indes = '$index'");
+        // Make query
+        $t = $this->table;
+        $result = mysqli_query($this->db, "SELECT * FROM $t WHERE indes = '$index'");
         
         $list = false;
         $row = mysqli_fetch_array($result);
@@ -141,8 +146,8 @@ class GuestbookAccess
     {
         // For security: supress SQL injection
         settype($index, 'Integer');
-        
-        $result = mysqli_query($this->db, "DELETE FROM guestbook WHERE indes = '$index'");
+        $t = $this->table;
+        $result = mysqli_query($this->db, "DELETE FROM $t WHERE indes = '$index'");
         
         return $result;
     }

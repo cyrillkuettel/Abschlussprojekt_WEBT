@@ -75,10 +75,10 @@ switch ($_POST['action']) {
         }
         if (!empty($_POST['option'])) {
             if ($_POST['option'] == "scm1") { // ausverkauft
-
+                
             } else {
 
-                
+
             }
         } else {
             warn_and_go_back("Kein bike ausgewählt?");
