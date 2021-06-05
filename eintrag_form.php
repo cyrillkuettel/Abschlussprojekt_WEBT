@@ -61,7 +61,7 @@ because of this error:
 
 require_once 'GuestbookAccess.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     debug("got here");
     // TODO:  use isset to check null as well. 
     if (empty($_POST['name'])) {
@@ -86,10 +86,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (!empty($_POST['option'])) {
         if ($_POST['option'] == "scm1") { // ausverkauft
-            // Construct Message für ausverkauft. 
-            // -> Hier ein seperates HTML machen und schnell dort prototypen
-        } else {
+
+        } else { // in diesem Fall nicht ausverkauft.
+
             $velo = $_POST['option'];
+
+            $guestbook = new GuestbookAccess();
+
+            // Call the add entry methode
+            // The methode itself adds an unique index and the timestamp to the entry.
+            $id1 = $guestbook->addEntry($name, $email, $velo);
+
+            echo "Added new entry with index $id1\n";
+            
+            echo '<meta charset="utf-8" />';
+            echo '<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">';
+            echo '<link rel="stylesheet" href="/css/custom_rules.css">';
+            echo '<style>';
+            echo 'footer {';
+            echo 'position: fixed;';
+            echo 'left: 0;';
+            echo 'bottom: 0;';
+            echo 'width: 100%;';
+            echo 'color: white;';
+            echo 'text-align: center;';
+            echo 'padding: 60px;';
+            echo 'background-color: #4CAF50;';
+            echo '}';
+            echo '</style>';
+            echo '';
+            echo '<div class="w3-container">';
+            echo '<div class="w3-center" style="margin:auto;">';
+            echo '<div class="thank you">';
+            echo '<h1>Vielen Dank für Ihren Kauf!</h1>';
+            echo '<p>Wir werden Ihre Bestellung in Kürze aufnehmen.</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '';
+            echo '<!-- canvas Mit dem Velo Logo --->';
+            echo '<section class="w3-container w3-center">';
+            echo '<canvas id="myCanvas" width="1000px" height="500px"></canvas>';
+            echo '<script src="/js/canvas.js"></script>';
+            echo '</section>';
+            echo '';
+            echo '<section class="go-back">';
+            echo '<div class="w3-card-4 w3-center" style="margin:auto;">';
+            echo '<div class="link-wrapper">';
+            echo '<a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück zur Homepage</button></a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</section>';
+            echo '';
+            echo '<footer class="w3-container">';
+            echo '<div class="w3-container w3-center">';
+            echo '<p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>';
+            echo '</div>';
+            echo '</footer>';
+            
         }
     } else {
         warn_and_go_back("Kein bike ausgewählt?");
@@ -100,15 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // unset($_POST['submit']);
 
-    // Everything is filled out. Now put the information in the database
-    // Create an object of the GuestbookAccess class
-    $guestbook = new GuestbookAccess();
 
-    // Call the add entry methode
-    // The methode itself adds an unique index and the timestamp to the entry.
-    $id1 = $guestbook->addEntry($name, $email, $velo);
-
-     echo "Added new entry with index $id1\n";
 
 } else {
     debug("got to the exit");
@@ -156,12 +202,3 @@ function debug($data)
 
 
 ?>
-<div class="w3-card-4 w3-center" style="margin:auto;">
-
-    <div class="link-container">
-        <a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück</button></a>
-    </div>
-    <div class="thank you">
-
-    </div>
-</div>

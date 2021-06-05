@@ -9,7 +9,7 @@
 
        c = canvas.getContext('2d')
        c.fillStyle = "red";
-
+/*
        c.beginPath();
        c.moveTo(0, 0);
        c.lineTo(width, 0);
@@ -22,6 +22,7 @@
        c.stroke();
        //c.fillStyle = "#33ee99";
        // c.fill();
+       */
    }
 
    function drawEllipse(x, y, radius, color, optionalLineWidth = '18', strokeStyle = "#454545") {
