@@ -2,16 +2,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- hamburger btn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/custom_rules.css">
-
     <script src="/js/formValidate.js"></script>
     <script src="/js/nav-script.js"></script>
     <title>Home</title>
@@ -59,10 +56,9 @@ because of this error:
 */
 
 
-require_once 'GuestbookAccess.php';
+require_once 'AccessDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    debug("got here");
     // TODO:  use isset to check null as well. 
     if (empty($_POST['name'])) {
         warn_and_go_back("Geben Sie gültige Eingaben in das Formular!");
@@ -84,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return;
         }
     }
+
     if (!empty($_POST['option'])) {
         if ($_POST['option'] == "scm1") { // ausverkauft
 
@@ -91,14 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $velo = $_POST['option'];
 
-            $guestbook = new GuestbookAccess();
+            $acccessObject = new AccessDB();
 
             // Call the add entry methode
             // The methode itself adds an unique index and the timestamp to the entry.
-            $id1 = $guestbook->addEntry($name, $email, $velo);
+            $id1 = $acccessObject->addEntry($name, $email, $velo);
 
             echo "Added new entry with index $id1\n";
-            
+
             echo '<meta charset="utf-8" />';
             echo '<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">';
             echo '<link rel="stylesheet" href="/css/custom_rules.css">';
@@ -138,27 +135,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '</div>';
             echo '</section>';
             echo '';
-            echo '<footer class="w3-container">';
-            echo '<div class="w3-container w3-center">';
-            echo '<p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>';
-            echo '</div>';
-            echo '</footer>';
-            
         }
     } else {
         warn_and_go_back("Kein bike ausgewählt?");
     }
-
-    //  ------------------------------------
-
-
-    // unset($_POST['submit']);
-
-
-
 } else {
     debug("got to the exit");
 }
+
 
 # Cookie erstellen
 if (!(isset($_COOKIE['customerName']))) {
@@ -173,6 +157,7 @@ if (!(isset($_COOKIE['customerName']))) {
         // OK. name stayed the same. 
     }
 }
+// show the entries:
 
 
 
@@ -202,3 +187,59 @@ function debug($data)
 
 
 ?>
+
+<section id="history" class="w3-container">
+
+    <h2>Verlauf</h2>
+    <div class="w3-card-4 w3-center" style="margin:auto;">
+        <div class="w3-container w3-center">
+                <?php
+                # Einträge holen aus db
+                $acccessObject = new AccessDB();
+                $table = $acccessObject->getEntries();
+
+                if ($table) { // Check if there are entries
+                    echo '<table class="class="w3-table-all w3-centered"">';
+                    echo "<tr><th>Zeit</th><th>Name</th><th>gekauftes Velo</th></tr>";
+
+
+                    foreach ($table as $row) {
+                        // Output each element
+
+                        $index = $row["Index"];
+                        $date = $row["Date"];
+                        $name = $row["Name"];
+                        $velo = $row["veloType"];
+
+                        echo "<tr><td>";
+                        echo $date;
+                        echo "</td><td>";
+                        echo "$name";
+                        echo "</td><td>";
+                        echo "$velo";
+                        echo "</td>";
+
+                    }
+                    echo "</table>";
+                } else {
+                    echo "\n Order Table is empty\n";
+                }
+
+                /*
+                while ($row = mysqli_fetch_assoc($res)) {
+                    echo '<tr>
+                    <td>';
+                    echo $row['zeit'] . '</td>
+                    <td>';
+                    echo $row['fiat'] . " " . $row['fiatTyp'] . '</td>
+                    <td>';
+                    echo $row['crypto'] . " " . $row['cryptoTyp'] . ' </td>
+                  </tr>';
+                }
+                */
+
+                ?>
+         
+        </div>
+    </div>
+</section>
