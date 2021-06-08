@@ -103,33 +103,29 @@ class AccessDB
              echo "<script>console.log('text " . $output . "' );</script>";
         }
         
-
-        
-
         // Add entry to the database
         $t = $this->table; // local variable, because I could not access the field "$this->table" in the subsequent line
-        $stmt = $this->db->prepare("INSERT INTO $t (namep, email, veloType) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $name, $email, $veloType);
+        $result = $this->db->prepare("INSERT INTO $t (namep, email, veloType) VALUES (?, ?, ?)");
+        $result->bind_param("sss", $name, $email, $veloType);
+        $result->execute();
 
        // $result = mysqli_query($this->db, "INSERT INTO $t (namep, email, veloType) VALUES ('$name', '$eMail', '$veloType')");
         
 
         // Is this necessary, if prepared statements are being used? 
         //  I suppose not. "If the original statement template is not derived from external input, SQL injection cannot occur."
-
         $name    = mysqli_real_escape_string($this->db, $name);
         $eMail   = mysqli_real_escape_string($this->db, $eMail);
         $veloType = mysqli_real_escape_string($this->db, $veloType);
 
-        
 
-        if ($result)
+        if ($result) // we need to parse the result somehow.
         {
             $result = mysqli_insert_id($this->db);
         } else {
            debug("Failed to add entry.");
         }
-
+        
         return $result;
     }
 
