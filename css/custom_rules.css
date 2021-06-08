@@ -121,9 +121,10 @@ header h1 {
 footer {
   padding: 60px; 
   left: 0;
+  height: 100px;
   bottom: 0;
   width: 100%;
   background-color: #4CAF50;
   color: white;
   text-align: center;
-}
+} 

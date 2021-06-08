@@ -1,5 +1,6 @@
+<html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,25 +18,19 @@
 
 <body>
     <header>
-        <h1>Bruno's Velo Shop</h1>
+    <h1><a href="index.html">Bruno's Velo Shop</a></h1>
     </header>
+    <!--Unter normalen Umständen, wäre hier include("navbar.php") die bessere Idee. (Redundanz)-->
     <nav>
         <div class="topnav" id="navigation">
             <a href="index.html/#Information">Information</a>
             <a href="index.html/#Formular">Formular</a>
             <a href="index.html/#Canvas">Canvas</a>
-            <a href="index.html/#Gästebuch">Gästebuch</a>
             <a href="javascript:void(0);" class="icon" onclick="toggleNavigation()">
                 <i class="fa fa-bars"></i></a>
-
         </div>
     </nav>
 </body>
-
-</html>
-
-
-
 
 
 
@@ -49,11 +44,6 @@
 $name_error = $email_error = $phone_error = $url_error = "";
 $name = $email = $velo = "";
 
-/*
-because of this error:
-    the " PHPSESSID " cookie will soon be rejected because 
-    its " sameSite " attribute is set to " none " or an invalid value, and without " secure " attribute. 
-*/
 
 
 require_once 'AccessDB.php';
@@ -82,35 +72,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!empty($_POST['option'])) {
-        if ($_POST['option'] == "scm1") { // ausverkauft
-
-        } else { // in diesem Fall nicht ausverkauft.
-
-            $velo = $_POST['option'];
-
-            $acccessObject = new AccessDB();
-
-            // Call the add entry methode
-            // The methode itself adds an unique index and the timestamp to the entry.
-            $id1 = $acccessObject->addEntry($name, $email, $velo);
-
-            echo "Added new entry with index $id1\n";
-
+        if ($_POST['option'] == "Scott Metrix 20") { // sold out
+            // show the Sold out message.  
+           
             echo '<meta charset="utf-8" />';
             echo '<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">';
             echo '<link rel="stylesheet" href="/css/custom_rules.css">';
-            echo '<style>';
-            echo 'footer {';
-            echo 'position: fixed;';
-            echo 'left: 0;';
-            echo 'bottom: 0;';
-            echo 'width: 100%;';
-            echo 'color: white;';
-            echo 'text-align: center;';
-            echo 'padding: 60px;';
-            echo 'background-color: #4CAF50;';
-            echo '}';
-            echo '</style>';
+            echo '';
+            echo '<div class="w3-container">';
+            echo '<div class="w3-center" style="margin:auto;">';
+            echo '<div class="thank you">';
+            echo '<h1>Das tut uns Leid! Das gwünschte Velo ist leider gerade ausverkauft.</h1>';
+            echo '<p>Gerne kommen wir auf sie zurück, wenn das Velo wieder auf Lager ist.</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '';
+            echo '<!-- canvas Mit dem Velo Logo --->';
+            echo '<section class="w3-container w3-center">';
+            echo '<canvas id="myCanvas" width="1000px" height="500px"></canvas>';
+            echo '<script src="/js/canvas.js"></script>';
+            echo '</section>';
+            echo '';
+            echo '<section class="go-back">';
+            echo '<div class="w3-card-4 w3-center" style="margin:auto;">';
+            echo '<div class="link-wrapper">';
+            echo '<a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück zur Homepage</button></a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</section>';
+            
+        } else { // here: available
+
+            $velo = $_POST['option'];
+            $acccessObject = new AccessDB();
+            // Call the add entry methode
+            // index and the timestamp are handled automatically.
+
+           $acccessObject->addEntry($name, $email, $velo); // add the product to database
+
+
+            echo '<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">';
+            echo '<link rel="stylesheet" href="/css/custom_rules.css">';
             echo '';
             echo '<div class="w3-container">';
             echo '<div class="w3-center" style="margin:auto;">';
@@ -129,9 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '';
             echo '<section class="go-back">';
             echo '<div class="w3-card-4 w3-center" style="margin:auto;">';
-            echo '<div class="link-wrapper">';
             echo '<a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück zur Homepage</button></a>';
-            echo '</div>';
             echo '</div>';
             echo '</section>';
             echo '';
@@ -157,13 +158,10 @@ if (!(isset($_COOKIE['customerName']))) {
         // OK. name stayed the same. 
     }
 }
-// show the entries:
-
-
 
 /*
  function to warn the user and return to the main Page. 
- main page has to have the name index.html for this to work.
+ main page = index.html
 */
 function warn_and_go_back($data)
 {
@@ -187,59 +185,46 @@ function debug($data)
 
 
 ?>
-
 <section id="history" class="w3-container">
 
     <h2>Verlauf</h2>
     <div class="w3-card-4 w3-center" style="margin:auto;">
         <div class="w3-container w3-center">
-                <?php
-                # Einträge holen aus db
-                $acccessObject = new AccessDB();
-                $table = $acccessObject->getEntries();
+            <?php
+            $acccessObject = new AccessDB();
+            $table = $acccessObject->getEntries();
 
-                if ($table) { // Check if there are entries
-                    echo '<table class="class="w3-table-all w3-centered"">';
-                    echo "<tr><th>Zeit</th><th>Name</th><th>gekauftes Velo</th></tr>";
+            if ($table) { // Check if there are entries
+                echo '<table class="w3-table-all w3-centered">';
+                echo "<tr><th>Zeit</th><th>Name</th><th>gekauftes Velo</th></tr>";
+                foreach ($table as $row) {
+                    // Output each element
 
+                    $index = $row["Index"];
+                    $date = $row["Date"];
+                    $name = $row["Name"];
+                    $velo = $row["veloType"];
 
-                    foreach ($table as $row) {
-                        // Output each element
-
-                        $index = $row["Index"];
-                        $date = $row["Date"];
-                        $name = $row["Name"];
-                        $velo = $row["veloType"];
-
-                        echo "<tr><td>";
-                        echo $date;
-                        echo "</td><td>";
-                        echo "$name";
-                        echo "</td><td>";
-                        echo "$velo";
-                        echo "</td>";
-
-                    }
-                    echo "</table>";
-                } else {
-                    echo "\n Order Table is empty\n";
+                    echo "<tr><td>";
+                    echo $date;
+                    echo "</td><td>";
+                    echo "$name";
+                    echo "</td><td>";
+                    echo "$velo";
+                    echo "</td>";
                 }
-
-                /*
-                while ($row = mysqli_fetch_assoc($res)) {
-                    echo '<tr>
-                    <td>';
-                    echo $row['zeit'] . '</td>
-                    <td>';
-                    echo $row['fiat'] . " " . $row['fiatTyp'] . '</td>
-                    <td>';
-                    echo $row['crypto'] . " " . $row['cryptoTyp'] . ' </td>
-                  </tr>';
-                }
-                */
-
-                ?>
-         
+                echo "</table>";
+            } else {
+                echo "\n Bis jetzt noch keine Bestellungen.\n";
+            }
+            ?>
         </div>
     </div>
+
 </section>
+<footer class="w3-container">
+        <div class="w3-container w3-center">
+            <p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>
+        </div>
+    </footer>
+</html>
