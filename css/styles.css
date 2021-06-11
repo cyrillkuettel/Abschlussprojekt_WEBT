@@ -1,4 +1,6 @@
-
+.fett {
+  font-weight: bold;
+}
 
 #output{
     position: absolute;
