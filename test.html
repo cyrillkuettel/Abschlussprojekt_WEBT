@@ -1,44 +1,65 @@
-<meta charset="utf-8" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="/css/custom_rules.css">
+<!doctype html>
+<title>Example</title>
 <style>
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        text-align: center;
-        padding: 60px;
-        background-color: #4CAF50;
-    }
+  .wrapper {
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+  }
+  .form-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .5em;
+  }
+  .form-row > label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+  }
+  .form-row > input {
+    flex: 2;
+  }
+  .form-row > input,
+  .form-row > button {
+    padding: .5em;
+  }
+  .form-row > button {
+   background: gray;
+   color: white;
+   border: 0;
+  }
+ @media screen and (min-width: 768px) {
+   	.form-row > input {
+    	flex: 3;  
+   }
+  }
+ @media screen and (min-width: 992px) {
+   	.form-row > input {
+    	flex: 4;  
+   }
+  }
+ @media screen and (min-width: 1200px) {
+   	.form-row > input {
+    	flex: 5;  
+   }
+  }
 </style>
-
-<div class="w3-container">
-    <div class="w3-center" style="margin:auto;">
-        <div class="thank you">
-            <h1>Das tut uns Leid! Das gwünschte Velo ist leider gerade ausverkauft.</h1>
-            <p>Gerne kommen wir auf sie zurück, wenn das Velo wieder auf Lager ist.</p>
-        </div>
-    </div>
-</div>
-
-<!-- canvas Mit dem Velo Logo --->
-<section class="w3-container w3-center">
-    <canvas id="myCanvas" width="1000px" height="500px"></canvas>
-    <script src="/js/canvas.js"></script>
-</section>
-
-<section class="go-back">
-    <div class="w3-card-4 w3-center" style="margin:auto;">
-        <div class="link-wrapper">
-            <a href="index.html"><button class="w3-button w3-green" style="margin: 7px;">Zurück zur Homepage</button></a>
-        </div>
-    </div>
-</section>
-
-<footer class="w3-container">
-    <div class="w3-container w3-center">
-        <p class="copyright"> HSLU FS2021 - Cyrill Küttel Copyright &copy;</p>
-    </div>
-</footer>
+<form>
+  <ul class="wrapper">
+    <li class="form-row">
+      <label for="name">Name</label>
+      <input type="text" id="name">
+    </li>
+    <li class="form-row">
+      <label for="townborn">Town you were born in</label>
+      <input type="text" id="townborn">
+    </li>
+    <li class="form-row">
+      <label for="email">Email Address</label>
+      <input type="email" id="email">
+    </li>
+    <li class="form-row">
+      <button type="submit">Submit</button>
+    </li>
+  </ul>
+</form>
