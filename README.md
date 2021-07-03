@@ -7,5 +7,5 @@ Dieses Projekt bietet den Grundbaustein eines Webshops. Es gibt ein serverseitig
 - Keine Frameworks, alles Vanilla Javascript
 
 
-[Alt](webshop-screenshot.png)
+![Alt](webshop-screenshot.png)
 
